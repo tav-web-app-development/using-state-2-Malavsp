@@ -1,4 +1,4 @@
-export default function NavBar({ user } = false) {
+export default function NavBar({ user = false, itemsInCart }) {
   return (
     <>
       {user ? (
@@ -13,6 +13,7 @@ export default function NavBar({ user } = false) {
       <a href="#home">Laptops </a>
       <a href="#contact">Contact </a>
       <a href="#about">About </a>
+      <div>{itemsInCart} items in Cart</div>
     </>
   );
 }

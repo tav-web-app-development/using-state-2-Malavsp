@@ -1,14 +1,9 @@
 import { useState } from "react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, handleAddToCartClick }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showDescription, setShowDescription] = useState(false);
-  const [itemsInCart, setItemsInCart] = useState(0);
 
-  const handleAddToCartClick = () => {
-    setItemsInCart(itemsInCart + 1);
-    alert(`you added ${itemsInCart + 1}`);
-  };
   return (
     <>
       <div id="image-carousel">
@@ -31,15 +26,14 @@ export default function ProductCard({ product }) {
       </div>
 
       <h3>{product.name}</h3>
-      <p>{product.description}</p>
       <button onClick={() => setShowDescription(!showDescription)}>
         {showDescription ? "Hide " : "Show"} Description
       </button>
+      <p>{showDescription ? product.description : ""}</p>
       <div className="price">${product.price}</div>
 
       <button onClick={handleAddToCartClick}>Add to Cart</button>
 
-      <div>You order this item {itemsInCart} times</div>
       {!product.isInStock && "The product is out of stock"}
     </>
   );
